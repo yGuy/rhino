@@ -368,8 +368,10 @@ public class FunctionNode extends ScriptNode {
     @Override
     public String toSource(int depth) {
         StringBuilder sb = new StringBuilder();
-        sb.append(makeIndent(depth));
-        sb.append("function");
+        if (!isGetterOrSetter()){
+            sb.append(makeIndent(depth));
+            sb.append("function");
+        }
         if (functionName != null) {
             sb.append(" ");
             sb.append(functionName.toSource(0));
